@@ -12,7 +12,6 @@ def start(message):
 def fiz(message):
     bot.send_message(message.chat.id, 'Напишите название физической величины которая вам нужна. Например: Мощность, Энергия, Плотность. Для выхода пропишите команду "/exit"')
     bot.register_next_step_handler(message, on_clickFiz)
-    
 def on_clickFiz(message):
     while message.text != '/exit':
         if message.text == 'Давление':
@@ -37,8 +36,12 @@ def on_clickFiz(message):
             bot.reply_to(message, 'выбери нужную', reply_markup=markup)
             bot.register_next_step_handler(message, on_clickFiz)
             break
-    bot.send_message(message.chat.id, 'Выберите раздел')
-    
+        else:
+            bot.send_message(message.chat.id, 'Такой величины нет. Попробуйте еще раз')
+            bot.register_next_step_handler(message, on_clickFiz)
+            break
+    if message.text == '/exit':
+        bot.send_message(message.chat.id, 'Выберите раздел')
         
          
          
@@ -48,6 +51,7 @@ def on_clickFiz(message):
 def inf(message):
     bot.send_message(message.chat.id, 'Введите номер задания код которого вам нужен или напишите "/python" для получения шпоргалки. Для выхода пропишите команду "/exit"')
     bot.register_next_step_handler(message, on_clickInf)
+
     
 def on_clickInf(message):
     while message.text != '/exit':
@@ -60,17 +64,15 @@ def on_clickInf(message):
             bot.reply_to(message, 'выбери нужный тип', reply_markup=markup)
             bot.register_next_step_handler(message, on_clickInf)
             break
-        
-        
         elif message.text == '5':
-            file_path5= 'C:\\Users\\Roblo\\main\\tgBot\\5.txt'
+            file_path5= 'C:\\Users\\Roblo\\main\\tgBot\\teory\\5.txt'
             with open(file_path5, 'r', encoding='utf-8') as file:
                 text = file.read()
             bot.send_message(message.chat.id, text)
             bot.register_next_step_handler(message, on_clickInf)
             break
         elif message.text == '6':
-            file_path6= 'C:\\Users\\Roblo\\main\\tgBot\\6.txt'
+            file_path6= 'C:\\Users\\Roblo\\main\\tgBot\\teory\\6.txt'
             with open(file_path6, 'r', encoding='utf-8') as file:
                 text = file.read()
             bot.send_message(message.chat.id, text)
@@ -97,7 +99,8 @@ def on_clickInf(message):
             bot.send_message(message.chat.id, 'Данное задание еще не было добавлено или его нет в экзамене')
             bot.register_next_step_handler(message, on_clickInf)
             break
-    bot.send_message(message.chat.id, 'Выберите раздел')
+    if message.text == '/exit':
+        bot.send_message(message.chat.id, 'Выберите раздел')
 
 
 
@@ -109,43 +112,43 @@ def callback_message(callback):
     if callback.data == 'E = mgh':
         bot.send_message(callback.message.chat.id, 'E = mgh')
     if callback.data == '2.1':
-        file_path2 = 'C:\\Users\\Roblo\\main\\tgBot\\2.1.txt'
+        file_path2 = 'C:\\Users\\Roblo\\main\\tgBot\\teory\\2.1.txt'
         with open(file_path2, 'r', encoding='utf-8') as file:
             text = file.read()
         bot.send_message(callback.message.chat.id, text)
     if callback.data == '2.2':
-        file_path2 = 'C:\\Users\\Roblo\\main\\tgBot\\2.2.txt'
+        file_path2 = 'C:\\Users\\Roblo\\main\\tgBot\\teory\\2.2.txt'
         with open(file_path2, 'r', encoding='utf-8') as file:
             text = file.read()
         bot.send_message(callback.message.chat.id, text)
     if callback.data == '8.1':
-        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\8.1.txt'
+        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\teory\\8.1.txt'
         with open(file_path8, 'r', encoding='utf-8') as file:
             text = file.read()
         bot.send_message(callback.message.chat.id, text)
     if callback.data == '8.2':
-        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\8.2.txt'
+        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\teory\\8.2.txt'
         with open(file_path8, 'r', encoding='utf-8') as file:
             text = file.read()
         bot.send_message(callback.message.chat.id, text)
     if callback.data == '8.3':
-        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\8.3.txt'
+        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\teory\\8.3.txt'
         with open(file_path8, 'r', encoding='utf-8') as file:
             text = file.read()
         bot.send_message(callback.message.chat.id, text)
     if callback.data == '8.4':
-        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\8.4.txt'
+        file_path8 = 'C:\\Users\\Roblo\\main\\tgBot\\teory\\8.4.txt'
         with open(file_path8, 'r', encoding='utf-8') as file:
             text = file.read()
         bot.send_message(callback.message.chat.id, text)
     if callback.data == 'teor8':
-        file_1 = open('C:\\Users\\Roblo\\main\\tgBot\\teor8_1.jpg', 'rb')
+        file_1 = open('C:\\Users\\Roblo\\main\\tgBot\\teory\\teor8_1.jpg', 'rb')
         bot.send_photo(callback.message.chat.id, file_1)
-        file_2 = open('C:\\Users\\Roblo\\main\\tgBot\\teor8_2.jpg', 'rb')
+        file_2 = open('C:\\Users\\Roblo\\main\\tgBot\\teory\\teor8_2.jpg', 'rb')
         bot.send_photo(callback.message.chat.id, file_2)
-        file_3 = open('C:\\Users\\Roblo\\main\\tgBot\\teor8_3.jpg', 'rb')
+        file_3 = open('C:\\Users\\Roblo\\main\\tgBot\\teory\\teor8_3.jpg', 'rb')
         bot.send_photo(callback.message.chat.id, file_3)
-        file_4 = open('C:\\Users\\Roblo\\main\\tgBot\\teor8_4.jpg', 'rb')
+        file_4 = open('C:\\Users\\Roblo\\main\\tgBot\\teory\\teor8_4.jpg', 'rb')
         bot.send_photo(callback.message.chat.id, file_4)
     
         
